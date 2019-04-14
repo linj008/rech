@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapping.TUserMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.TUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="available_quota" jdbcType="INTEGER" property="availableQuota" />
+    <result column="total_quota" jdbcType="INTEGER" property="totalQuota" />
+    <result column="account_type" jdbcType="INTEGER" property="accountType" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="wx_num" jdbcType="VARCHAR" property="wxNum" />
+    <result column="taobao_num" jdbcType="VARCHAR" property="taobaoNum" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="add_date" jdbcType="VARCHAR" property="addDate" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="account_num" jdbcType="VARCHAR" property="accountNum" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, role_id, username, password, available_quota, total_quota, account_type, status, 
+    phone_num, wx_num, taobao_num, order_status, is_admin, info, add_date, address, sex, 
+    bank_name, account_num, parent_id, account_name
+  </sql>
+  <sql id="Base_Column_List_username">
+    id,username
+  </sql>
+  <select id="selectByExample" parameterType="com.ssm.pojo.TUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByIdExample" parameterType="com.ssm.pojo.TUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_username" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.pojo.TUserExample">
+    delete from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.pojo.TUser">
+    insert into t_user (id, role_id, username, 
+      password, available_quota, total_quota, 
+      account_type, status, phone_num, 
+      wx_num, taobao_num, order_status, 
+      is_admin, info, add_date, 
+      address, sex, bank_name, 
+      account_num, parent_id, account_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{availableQuota,jdbcType=INTEGER}, #{totalQuota,jdbcType=INTEGER}, 
+      #{accountType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{phoneNum,jdbcType=VARCHAR}, 
+      #{wxNum,jdbcType=VARCHAR}, #{taobaoNum,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
+      #{isAdmin,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{bankName,jdbcType=VARCHAR}, 
+      #{accountNum,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{accountName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.pojo.TUser">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="availableQuota != null">
+        available_quota,
+      </if>
+      <if test="totalQuota != null">
+        total_quota,
+      </if>
+      <if test="accountType != null">
+        account_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="wxNum != null">
+        wx_num,
+      </if>
+      <if test="taobaoNum != null">
+        taobao_num,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="addDate != null">
+        add_date,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="accountNum != null">
+        account_num,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="availableQuota != null">
+        #{availableQuota,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuota != null">
+        #{totalQuota,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNum != null">
+        #{wxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoNum != null">
+        #{taobaoNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNum != null">
+        #{accountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.pojo.TUserExample" resultType="java.lang.Long">
+    select count(*) from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.availableQuota != null">
+        available_quota = #{record.availableQuota,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalQuota != null">
+        total_quota = #{record.totalQuota,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountType != null">
+        account_type = #{record.accountType,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.phoneNum != null">
+        phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxNum != null">
+        wx_num = #{record.wxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taobaoNum != null">
+        taobao_num = #{record.taobaoNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null">
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAdmin != null">
+        is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.info != null">
+        info = #{record.info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addDate != null">
+        add_date = #{record.addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankName != null">
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNum != null">
+        account_num = #{record.accountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountName != null">
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_user
+    set id = #{record.id,jdbcType=INTEGER},
+      role_id = #{record.roleId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      available_quota = #{record.availableQuota,jdbcType=INTEGER},
+      total_quota = #{record.totalQuota,jdbcType=INTEGER},
+      account_type = #{record.accountType,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      wx_num = #{record.wxNum,jdbcType=VARCHAR},
+      taobao_num = #{record.taobaoNum,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      info = #{record.info,jdbcType=VARCHAR},
+      add_date = #{record.addDate,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      account_num = #{record.accountNum,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      account_name = #{record.accountName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.TUser">
+    update t_user
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="availableQuota != null">
+        available_quota = #{availableQuota,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuota != null">
+        total_quota = #{totalQuota,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null">
+        account_type = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNum != null">
+        wx_num = #{wxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoNum != null">
+        taobao_num = #{taobaoNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        add_date = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNum != null">
+        account_num = #{accountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.TUser">
+    update t_user
+    set role_id = #{roleId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      available_quota = #{availableQuota,jdbcType=INTEGER},
+      total_quota = #{totalQuota,jdbcType=INTEGER},
+      account_type = #{accountType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      wx_num = #{wxNum,jdbcType=VARCHAR},
+      taobao_num = #{taobaoNum,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR},
+      add_date = #{addDate,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      account_num = #{accountNum,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      account_name = #{accountName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

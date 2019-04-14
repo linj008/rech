@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+        <meta name="renderer" content="webkit">
+        <meta name="HandheldFriendly" content="True"/>
+        <meta name="MobileOptimized" content="320"/>
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		
+    
+		<title>收银台</title>
+		
+		<script src="/pub/core/js/jquery.min.js"></script>
+		
+	<link href="/pub/core/css/web.min.css?v=4_xpehircec6eoz3" rel="stylesheet"/>
+
+	</head>
+	<body>
+		
+    <div class="container">
+		<h1 class="title">
+			<span class="title-logo logo-ali"></span>
+	    </h1>
+	    <div class="content">
+			<div class="pay-wave"></div>
+			<div class="pay-descr">
+	    		<p class="text-center">
+	    			扫码后请输入以下金额支付，否则系统判定为支付不成功。
+	    		</p>
+	    	</div>
+			<div class="pay-amount">￥4567.00</div>
+
+						
+        	<div class="pay-main">
+        											<div class="pay-timeout hide">
+					<img src="/pub/core/img/svg/ic_alert.svg" alt="">
+					<p>
+						支付已过期
+					</p>
+				</div>
+				<div class="pay-scaned hide">
+					<img src="/pub/core/img/svg/ic_alert.svg" alt="">
+					<p>
+						已扫码
+					</p>
+				</div>
+				<div class="pay-success hide">
+						<img src="/pub/core/img/svg/ic_checked.svg" alt="">
+						<p>
+							支付成功
+						</p>
+					</div>
+					<div class="pay-content">
+	                    <img class="pay-content-img" src="data:image/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAATgAAAE4AQMAAAD1sX0pAAAABlBMVEX///8AAABVwtN+AAABbUlEQVRoge3VwQ6DMAwD0Pz/T2cTsVPDGuA6yUWaYHndwUtKhJeX1z+vrPW9wVPUJRW7O4fPgxaLZVm3mx2yRQlUKnbvXH/X2u69qzoa9iZnu6tjtMDZG6RuNzq8TTbX9n1kd3YhXnr0WrYbHLsxESy69ZjxkJjt9q4CDk43w8bMS9x2W9cGviY8eGf35BK5rmQZ9Gpbu9EBV9g17DXwcmrazQ45R/a1hj7E2g1OJhonZtXZv3a3rtuTItZxGac5t9s5JcUiZa/dk+MZGcgUZyTjDrtbh5bsV0vtYfjSz3aTy+7JrMfVq3aPjhO+ujMk9LS7dxTJnkXM8PprdnsXOCZl2tGe2s52k/v5Ljjm0s52g+MJ2YHrrNs9Oc2bia9Np/DtNk7izOyBp11B2w2uP1MgG3b9G3aTy3qtdAGPFb/kbPfgUCdnwe6Vk97E5O9ztru4FscN98H2shscBxoDjmirU1fMdoPz8vL6z/UB8V//4SU65lEAAAAASUVORK5CYII=" alt="支付二维码">
+	                </div>	        </div>
+	        <div class="pay-time">
+	        	<ul class="countdown">
+			        <li> 
+			        	<span class="minutes">00</span>
+			            <p class="minutes_ref">分</p>
+			        </li>
+			        <li class="seperator">:</li>
+			        <li> 
+			        	<span class="seconds">00</span>
+			            <p class="seconds_ref">秒</p>
+			        </li>
+			    </ul>
+	        </div>
+			<div class="pay-hint">
+	    		<p>
+	    			打开支付宝扫一扫
+	    		</p>
+	        </div>
+	    </div>
+	    <div class="footer">
+	    	<p>
+	    		提示：请勿重复付款，如未到账请联系商家。
+	    	</p>
+	    </div>
+    </div>
+
+		
+	<script>
+		var token = "xdvpukftreajafsplrdpoa02rfytfya3";
+		var type = "1";
+		var timeout = "04/09/2019 07:06:56";
+	</script>
+
+		<script src="/pub/core/js/framework.min.js?v=idis0ye45xaoko_p"></script>
+<script src="/pub/core/js/main.min.js?v=5dffw6eompzdl471"></script>
+		
+	</body>
+</html>
