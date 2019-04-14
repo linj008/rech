@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapping.TRoleMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.TRole">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="wx_rate" jdbcType="VARCHAR" property="wxRate" />
+    <result column="ali_rate" jdbcType="VARCHAR" property="aliRate" />
+    <result column="is_member" jdbcType="INTEGER" property="isMember" />
+    <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, role_name, wx_rate, ali_rate, is_member, is_admin, parent_id, detail, level
+  </sql>
+  <select id="selectByExample" parameterType="com.ssm.pojo.TRoleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.pojo.TRoleExample">
+    delete from t_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.pojo.TRole">
+    insert into t_role (id, role_name, wx_rate, 
+      ali_rate, is_member, is_admin, 
+      parent_id, detail, level
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{wxRate,jdbcType=VARCHAR}, 
+      #{aliRate,jdbcType=VARCHAR}, #{isMember,jdbcType=INTEGER}, #{isAdmin,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.pojo.TRole">
+    insert into t_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="wxRate != null">
+        wx_rate,
+      </if>
+      <if test="aliRate != null">
+        ali_rate,
+      </if>
+      <if test="isMember != null">
+        is_member,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="wxRate != null">
+        #{wxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="aliRate != null">
+        #{aliRate,jdbcType=VARCHAR},
+      </if>
+      <if test="isMember != null">
+        #{isMember,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.pojo.TRoleExample" resultType="java.lang.Long">
+    select count(*) from t_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_role
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleName != null">
+        role_name = #{record.roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxRate != null">
+        wx_rate = #{record.wxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aliRate != null">
+        ali_rate = #{record.aliRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMember != null">
+        is_member = #{record.isMember,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAdmin != null">
+        is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_role
+    set id = #{record.id,jdbcType=INTEGER},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      wx_rate = #{record.wxRate,jdbcType=VARCHAR},
+      ali_rate = #{record.aliRate,jdbcType=VARCHAR},
+      is_member = #{record.isMember,jdbcType=INTEGER},
+      is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      detail = #{record.detail,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.TRole">
+    update t_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="wxRate != null">
+        wx_rate = #{wxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="aliRate != null">
+        ali_rate = #{aliRate,jdbcType=VARCHAR},
+      </if>
+      <if test="isMember != null">
+        is_member = #{isMember,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.TRole">
+    update t_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      wx_rate = #{wxRate,jdbcType=VARCHAR},
+      ali_rate = #{aliRate,jdbcType=VARCHAR},
+      is_member = #{isMember,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
